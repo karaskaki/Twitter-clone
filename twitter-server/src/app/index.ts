@@ -4,6 +4,8 @@ import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
 import { prismaClient } from "../client/db";
 
+import { user } from "./user";
+
 export async function initServer() {
   const app = express();
 
@@ -11,16 +13,15 @@ export async function initServer() {
 
   const grapgqlServer = new ApolloServer({
     typeDefs: `
+        ${user.types}
+        
         type Query {
-            sayHello: String
-            sayHelloToMe(name: String!): String
+            ${user.queries}
         }
     `,
     resolvers: {
       Query: {
-        sayHello: () => `Hey from graphql Server`,
-        sayHelloToMe: (parent: any, { name }: { name: String }) =>
-          `Hey ${name}`,
+        ...user.resolvers.queries,
       },
     },
   });

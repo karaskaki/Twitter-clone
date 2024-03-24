@@ -48,10 +48,10 @@ const sidebarMenuItems: TwitterSidebarButton[] = [
 ];
 
 export default function Home() {
-  const handleLoginWithGoogle = useCallback(
-    (Credential: CredentialResponse) => {},
-    []
-  );
+  // const handleLoginWithGoogle = useCallback(
+  //   (Credential: CredentialResponse) => {},
+  //   []);
+
   return (
     <div>
       <div className="grid grid-cols-12 h-screen w-screen px-56">

@@ -51,24 +51,24 @@ const sidebarMenuItems: TwitterSidebarButton[] = [
 ];
 
 export default function Home() {
-  const handleLoginWithGoogle = useCallback(async function (
-    Cred: CredentialResponse
-  ) {
-    const googleToken = Cred.credential;
-    if (!googleToken) return toast.error(`Google token not found`);
+  const handleLoginWithGoogle = useCallback(
+    async (Cred: CredentialResponse) => {
+      const googleToken = Cred.credential;
+      if (!googleToken) return toast.error(`Google token not found`);
 
-    const { verifyGoogleToken } = await graphQLClient.request(
-      verifyUserGoogleTokenQuery,
-      { token: googleToken }
-    );
+      const { verifyGoogleToken } = await graphQLClient.request(
+        verifyUserGoogleTokenQuery,
+        { token: googleToken }
+      );
 
-    toast.success("Verified Success");
-    console.log(verifyGoogleToken);
+      toast.success("Verified Success");
+      console.log(verifyGoogleToken);
 
-    if (verifyGoogleToken)
-      window.localStorage.setItem("__twitter_token", verifyGoogleToken);
-  },
-  []);
+      if (verifyGoogleToken)
+        window.localStorage.setItem("__twitter_token", verifyGoogleToken);
+    },
+    []
+  );
 
   return (
     <div>

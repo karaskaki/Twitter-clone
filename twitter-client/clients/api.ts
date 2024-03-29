@@ -8,7 +8,7 @@ export const graphQLClient = new GraphQLClient(
     headers: () => ({
       Authorization: isClinet
         ? `Bearer ${window.localStorage.getItem("__twitter_token")}`
-        : "undefined",
+        : "",
     }),
   }
 );
